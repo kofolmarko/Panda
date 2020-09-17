@@ -1,10 +1,10 @@
-import Collision from "/src/collision.js";
-import Bamboo from "/src/bamboo.js";
-import Character from "/src/character.js";
-import InputHandler from "/src/input.js";
-import Score from "/src/score.js";
-import Extras from "/src/extras.js"
-import Menu from "/src/menu.js";
+import Collision from "./collision.js";
+import Bamboo from "./bamboo.js";
+import Character from "./character.js";
+import InputHandler from "./input.js";
+import Score from "./score.js";
+import Extras from "./extras.js"
+import Menu from "./menu.js";
 
 let canvas = document.getElementById("gameScreen");
 let ctx = canvas.getContext("2d");
