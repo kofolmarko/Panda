@@ -1,4 +1,4 @@
-import Character from "/src/character.js";
+import Character from "./character.js";
 
 export default class InputHandler {
 
