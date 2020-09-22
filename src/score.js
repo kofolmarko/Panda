@@ -1,27 +1,57 @@
 export default class Score {
-    constructor(score, fatScore, lives) {
-        this.score = score;
-        this.fatScore = fatScore;
-        this.lives = lives;
+    constructor(game) {
+        this.score = 0;
+        this.fatScore = 10;
+        this.lives = 5;
+
+        this.isFat = false;
+
+        this.game = game;
+    }
+
+    reset() {
+        this.score = 0;
+        this.fatScore = 10;
+        this.lives = 5;
+        this.isFat = false;
     }
     
     draw(ctx) {
-        ctx.font = "30px Helvetica";
+        ctx.textAlign = "center";
+        ctx.font = "30px Invasion2000";
         ctx.fillStyle = "white";
-        ctx.fillText("Bamboo eaten: " + this.score, 500, 50);
-        ctx.font = "bold 20px Comic Sans MS";
+        ctx.fillText("Bamboo eaten:", 600, 50);
+        ctx.fillStyle = "orange";
+        ctx.fillText(this.score, 760, 50);
         ctx.fillStyle = "red";
-        ctx.fillText("Eat " + this.fatScore + " more to get fatter", 20, 50);
-        let heartPosX = 325;
+        ctx.fillText("Eat    more", 120, 50);
+        ctx.fillText("to get fatter", 120, 80);
+        ctx.fillStyle = "yellow";
+        ctx.fillText(this.fatScore, 110, 50);
+        let heartPosX = 280;
         for(var i = 0; i < this.lives; i++) {
             ctx.drawImage(document.getElementById("heart"), heartPosX, 35);
             heartPosX += 30;
         }
     }
 
-    update(score, fatScore, lives) {
-        this.score = score;
-        this.fatScore = fatScore;
-        this.lives = lives;
+    update(type) {
+        switch(type) {
+            case "score":
+                console.log("score");
+                this.score++;
+                this.fatScore--;
+                if(this.fatScore == 0){
+                    this.fatScore = 10;
+                    this.isFat = true;
+                    return true;
+                }
+                break;
+            case "lives":
+                this.lives--;
+                if(this.lives == 0)
+                    this.game.gamestate = 3;
+                break;
+        }
     }
 }

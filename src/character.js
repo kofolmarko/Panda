@@ -1,17 +1,17 @@
 export default class Character {
 
-    constructor(imgID, gameWidth, gameHeight) {
-        this.imgCharacter = document.getElementById(imgID);
+    constructor(game) {
+        this.imgCharacter = document.getElementById("panda3");
 
-        this.gameWidth = gameWidth;
-        this.gameHeight = gameHeight;
+        this.gameWidth = game.gameWidth;
+        this.gameHeight = game.gameHeight;
 
         this.width = 80;
         this.height = 100;
 
         this.position = {
-            x: gameWidth / 2 - this.width / 2,
-            y: gameHeight - this.height
+            x: this.gameWidth / 2 - this.width / 2,
+            y: this.gameHeight - this.height
         }
 
         this.maxSpeed = 10;
@@ -37,10 +37,6 @@ export default class Character {
         this.altitude = -this.maxAltitude;
     }
 
-    draw(ctx) {
-        ctx.drawImage(this.imgCharacter, this.position.x, this.position.y, this.width, this.height);
-    }
-
     getFat() {
         this.height *= 1.5;
         this.width *= 1.5;
@@ -53,6 +49,10 @@ export default class Character {
         this.width /= 1.5;
         this.maxSpeed /= 0.8;
         this.position.y = this.gameHeight - this.height;
+    }
+
+    draw(ctx) {
+        ctx.drawImage(this.imgCharacter, this.position.x, this.position.y, this.width, this.height);
     }
 
     update(deltaTime) {
@@ -72,5 +72,21 @@ export default class Character {
             this.altitude = this.maxAltitude / 2;
         }
             
+    }
+
+    reset() {
+        this.width = 80;
+        this.height = 100;
+
+        this.position = {
+            x: this.gameWidth / 2 - this.width / 2,
+            y: this.gameHeight - this.height
+        }
+
+        this.maxSpeed = 10;
+        this.speed = 0;
+
+        this.maxAltitude = 10;
+        this.altitude = 0;
     }
 }

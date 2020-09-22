@@ -1,8 +1,6 @@
-import Character from "./character.js";
-
 export default class InputHandler {
 
-    constructor(character) {
+    constructor(character, game) {
 
         document.addEventListener('keydown', (event) => {
             switch(event.keyCode) {
@@ -15,8 +13,18 @@ export default class InputHandler {
                 break;
             
             case 38:
-                if(character.position.y == character.gameHeight - character.height)
+                if(character.position.y == character.gameHeight - character.height && game.gamestate == 1)
                     character.jump()
+                break;
+
+            case 27:
+                if(game.gamestate == 1 || game.gamestate == 0)
+                    game.togglePause();
+                break;
+            
+            case 32:
+                if(game.gamestate == 2 || game.gamestate == 3)
+                    game.start();
                 break;
             }
         });

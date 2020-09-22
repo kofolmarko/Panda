@@ -1,12 +1,15 @@
 export default class Bamboo {
-    constructor(imgID, gameHeight) {
-        this.imgBamboo = document.getElementById(imgID);
+    constructor(game) {
+        this.imgBamboo = document.getElementById("bamboo0");
+
+        this.gameWidth = game.gameWidth;
+        this.gameHeight = game.gameHeight;
 
         this.width = 30;
         this.height = 90;
 
         this.position = {
-            x: Math.floor(Math.random() * 769),
+            x: Math.floor(Math.random() * (this.gameWidth - this.width)),
             y: -this.height
         }
 
@@ -21,5 +24,17 @@ export default class Bamboo {
         if(!deltaTime) return;
 
         this.position.y += this.speed;
+    }
+
+    reset(collision) {
+        if(this.position.y > this.gameHeight || collision) {
+            this.position.x = Math.floor(Math.random() * (this.gameWidth - this.width));
+            this.position.y = -this.height;
+
+            if(!collision) 
+                return true;
+            return false;
+        }
+        return false;
     }
 }
