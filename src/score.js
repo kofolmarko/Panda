@@ -34,6 +34,7 @@ export default class Score {
             ctx.drawImage(document.getElementById("heart"), heartPosX, heartPosY);
             heartPosY += 30;
         }
+        ctx.fillText("esc ||", 400, 50);
     }
 
     update(type) {
