@@ -18,20 +18,21 @@ export default class Score {
     
     draw(ctx) {
         ctx.textAlign = "center";
-        ctx.font = "30px Invasion2000";
-        ctx.fillStyle = "white";
-        ctx.fillText("Bamboo eaten:", 600, 50);
-        ctx.fillStyle = "orange";
+        ctx.font = "40px Invasion2000";
+        ctx.fillStyle = "#ffcc99";
+        ctx.fillText("Bamboo eaten:", 620, 50);
+        ctx.fillStyle = "#e6e600";
         ctx.fillText(this.score, 760, 50);
-        ctx.fillStyle = "red";
-        ctx.fillText("Eat    more", 120, 50);
-        ctx.fillText("to get fatter", 120, 80);
-        ctx.fillStyle = "yellow";
+        ctx.fillStyle = "#00cc66";
+        ctx.fillText("Eat         more", 120, 50);
+        ctx.fillText("to get fatter", 120, 90);
+        ctx.fillStyle = "#ffcc99";
         ctx.fillText(this.fatScore, 110, 50);
-        let heartPosX = 280;
+        let heartPosX = 750;
+        let heartPosY = 200;
         for(var i = 0; i < this.lives; i++) {
-            ctx.drawImage(document.getElementById("heart"), heartPosX, 35);
-            heartPosX += 30;
+            ctx.drawImage(document.getElementById("heart"), heartPosX, heartPosY);
+            heartPosY += 30;
         }
     }
 
